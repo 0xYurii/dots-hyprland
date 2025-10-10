@@ -1,0 +1,3 @@
+[submodule "arch-packages/illogical-impulse-microtex-git/src/MicroTeX"]
+	path = arch-packages/illogical-impulse-microtex-git/src/MicroTeX
+	url = https://github.com/illogical-impulse/MicroTeX.git
