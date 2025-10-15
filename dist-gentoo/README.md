@@ -5,6 +5,7 @@ Note:
 - This folder should reflect the equivalents of `/dist-arch/` but under Gentoo.
   - **When `/dist-arch/` is newer than this folder, an update on this folder is very likely needed.**
   - Useful link: [Commit history on dist-arch/](https://github.com/end-4/dots-hyprland/commits/main/dist-arch)
+- See also [Install scripts | illogical-impulse](https://ii.clsty.link/en/dev/inst-script/)
 
 ## Contributors
 - Author: [jwihardi](https://github.com/jwihardi)
@@ -25,10 +26,13 @@ Note:
 4. gsettings and kwriteconfig6 are set (same as dist-arch).
 
 ## Recommended use flags (useflags)
+- **The recommended useflags are not required, this is a more out of the box experience with these**
 - Pipewire is used, alsa and pulseaudio are disabled (enabling them won't hurt).
 - Init system is not assumed or considered so disabling systemd should be done in make.conf, same with session managers (elogind is recommended).
 
 ## Making the dot-files work
+- elogind is expected to be installed and run as a service on OpenRC to set ```XDG_RUNTIME_DIR```
+  - NOT recommended: seatd will require more manual setup
 - pipewire, pipewire-pulse, and wireplumber must be started after a dbus-session is created and before Hyprland is launched.
 
 If you want to start after logging into tty1 you can do something like this.
@@ -48,3 +52,10 @@ if status --is-interactive; and [ (tty) = "/dev/tty1" ]
     exec Hyprland
 end
 ```
+
+## Known Issues
+- If Hyprland is just blank, rebuild Quickshell (emerge -q gui-apps/quickshell)
+- ```Hyprland: error while loading shared libraries: libhyprgraphics.so.0: cannot open shared object file: No such file or directory```
+  - The Hyprland live ebuild sometimes has linkage issues, deleting _Hyprland_ and _hyprland_ from ```/usr/bin/``` and then re-emerging usually fixes this.
+- When emerging Hyprland if you get an issue relating to```undefined reference to `Hyprutils::Math::Vector2D::˜Vector2D()` ```
+  - Clear the cache folder (```rm -fr /var/tmp/portage/gui-wm/hyprland*```) then try again
