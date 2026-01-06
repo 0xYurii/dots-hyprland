@@ -9,6 +9,7 @@ __pycache__/
 
 # exp-update
 /.update-lock
+/.update-backups/
 
 # custom os-release
 /os-release
