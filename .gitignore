@@ -8,3 +8,7 @@ dots/.config/quickshell/ii/.qmlls.ini
 /os-release
 #emacs backup
 *~
+arch-packages/
+dist-arch/
+dots-hyprland/
+sdist/
